@@ -5,22 +5,22 @@
 //  Created by Hiromitsu Iwanaka on 2018/05/18.
 //
 
-#include "TimeSettingFlag.h"
+#include "ofxTimeSettingFlag.h"
 
 //--------------------------------------------------------------
-TimeSettingFlag::TimeSettingFlag() :
+ofxTimeSettingFlag::ofxTimeSettingFlag() :
 flagTimes(0),
 _flagTimes(0)
 {
 }
 
 //--------------------------------------------------------------
-TimeSettingFlag::~TimeSettingFlag(){
+ofxTimeSettingFlag::~ofxTimeSettingFlag(){
     
 }
 
 //--------------------------------------------------------------
-void TimeSettingFlag::setFlagTimes(int argnum, ...){
+void ofxTimeSettingFlag::setFlagTimes(int argnum, ...){
     
     flagClear();
     
@@ -42,7 +42,7 @@ void TimeSettingFlag::setFlagTimes(int argnum, ...){
 }
 
 //--------------------------------------------------------------
-void TimeSettingFlag::addFlagTimes(int argnum, ...) {
+void ofxTimeSettingFlag::addFlagTimes(int argnum, ...) {
     
     va_list args;
     va_start(args, argnum);
@@ -62,21 +62,21 @@ void TimeSettingFlag::addFlagTimes(int argnum, ...) {
 }
 
 //--------------------------------------------------------------
-int TimeSettingFlag::getFlagSize() {
+int ofxTimeSettingFlag::getFlagSize() {
     
     return flagTimes.size();
     
 }
 
 //--------------------------------------------------------------
-void TimeSettingFlag::flagReload(){
+void ofxTimeSettingFlag::flagReload(){
     
     _flagTimes = flagTimes;
     
 }
 
 //--------------------------------------------------------------
-void TimeSettingFlag::flagClear() {
+void ofxTimeSettingFlag::flagClear() {
     
     flagTimes.clear();
     flagReload();
@@ -84,7 +84,7 @@ void TimeSettingFlag::flagClear() {
 }
 
 //--------------------------------------------------------------
-bool TimeSettingFlag::getNextFlag() {
+bool ofxTimeSettingFlag::getNextFlag() {
     
     for (int i = 0; i < _flagTimes.size(); i++) {
         

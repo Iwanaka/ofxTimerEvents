@@ -1,13 +1,13 @@
 #pragma once
 #include "ofMain.h"
-#include "TimeMeasurement.h"
+#include "ofxTimeMeasurement.h"
 
-class TimeSettingFlag : public TimeMeasurement
+class ofxTimeSettingFlag : public ofxTimeMeasurement
 {
 public:
     
-    TimeSettingFlag();
-    ~TimeSettingFlag();
+    ofxTimeSettingFlag();
+    ~ofxTimeSettingFlag();
 
     void setFlagTimes(int argnum, ...);
     void addFlagTimes(int argnum, ...);

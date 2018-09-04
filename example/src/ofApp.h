@@ -1,9 +1,9 @@
 #pragma once
 
 #include "ofMain.h"
-#include "TimeController.h"
-#include "TimeMeasurement.h"
-#include "TimeSettingFlag.h"
+#include "ofxTimeController.h"
+#include "ofxTimeMeasurement.h"
+#include "ofxTimeSettingFlag.h"
 
 class ofApp : public ofBaseApp{
 
@@ -24,7 +24,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		
-    TimeMeasurement timer;
-    TimeSettingFlag timerFlag;
-    TimeController timerControll;
+    ofxTimeMeasurement timer;
+    ofxTimeSettingFlag timerFlag;
+    ofxTimeController timerControll;
 };

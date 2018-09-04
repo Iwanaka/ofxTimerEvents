@@ -1,14 +1,14 @@
 //
-//  TimeMeasurement.cpp
+//  ofxTimeMeasurement.cpp
 //  ofxTimeController
 //
 //  Created by Hiromitsu Iwanaka on 2018/05/18.
 //
 
-#include "TimeMeasurement.h"
+#include "ofxTimeMeasurement.h"
 
 //--------------------------------------------------------------
-TimeMeasurement::TimeMeasurement():
+ofxTimeMeasurement::ofxTimeMeasurement():
 currentTime(0.0),
 beforeTime(0.0),
 tempTime(0.0),
@@ -18,7 +18,7 @@ isStart(false)
 }
 
 //--------------------------------------------------------------
-TimeMeasurement::~TimeMeasurement(){
+ofxTimeMeasurement::~ofxTimeMeasurement(){
     
     while (thread.isRunning())
     {
@@ -29,7 +29,7 @@ TimeMeasurement::~TimeMeasurement(){
 
 
 //--------------------------------------------------------------
-void TimeMeasurement::start() {
+void ofxTimeMeasurement::start() {
     
     if(isStart) return;
     
@@ -46,7 +46,7 @@ void TimeMeasurement::start() {
 }
 
 //--------------------------------------------------------------
-void TimeMeasurement::pause() {
+void ofxTimeMeasurement::pause() {
     
     if(!isStart) return;
     
@@ -67,7 +67,7 @@ void TimeMeasurement::pause() {
 
 
 //--------------------------------------------------------------
-void TimeMeasurement::reset() {
+void ofxTimeMeasurement::reset() {
     
     while (thread.isRunning())
     {
@@ -83,7 +83,7 @@ void TimeMeasurement::reset() {
 }
 
 //--------------------------------------------------------------
-void TimeMeasurement::threadedFunction() {
+void ofxTimeMeasurement::threadedFunction() {
     
     while (isThreadRunning()) {
         
@@ -101,14 +101,14 @@ void TimeMeasurement::threadedFunction() {
 }
 
 //--------------------------------------------------------------
-float TimeMeasurement::getCurrentTime() {
+float ofxTimeMeasurement::getCurrentTime() {
     
     return currentTime;
     
 }
 
 //--------------------------------------------------------------
-void TimeMeasurement::setDecimalPoint(int decimalPoint) {
+void ofxTimeMeasurement::setDecimalPoint(int decimalPoint) {
     
     this->decimalPoint = decimalPoint;
     

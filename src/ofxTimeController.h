@@ -1,13 +1,13 @@
 #pragma once
 #include "ofMain.h"
-#include "TimeSettingFlag.h"
+#include "ofxTimeSettingFlag.h"
 
-class TimeController
+class ofxTimeController
 {
 public:
     
-	TimeController();
-	~TimeController();
+	ofxTimeController();
+	~ofxTimeController();
 
 
 	void addTimeData(string index);
@@ -36,7 +36,7 @@ private:
 	typedef struct
 	{
 		string index;
-		TimeSettingFlag time;
+		ofxTimeSettingFlag time;
         
 	}timeFlag;
 

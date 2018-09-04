@@ -1,12 +1,12 @@
 #pragma once
 #include "ofMain.h"
 
-class TimeMeasurement : public ofThread
+class ofxTimeMeasurement : public ofThread
 {
 public:
 	
-    TimeMeasurement();
-    ~TimeMeasurement();
+    ofxTimeMeasurement();
+    ~ofxTimeMeasurement();
     
     void start();
     void pause();

@@ -1,17 +1,17 @@
-#include "TimeController.h"
+#include "ofxTimeController.h"
 
 //--------------------------------------------------------------
-TimeController::TimeController()
+ofxTimeController::ofxTimeController()
 {
 }
 
 //--------------------------------------------------------------
-TimeController::~TimeController()
+ofxTimeController::~ofxTimeController()
 {
 }
 
 //--------------------------------------------------------------
-void TimeController::addTimeData(string index) {
+void ofxTimeController::addTimeData(string index) {
 
 	shared_ptr<timeFlag> temp = shared_ptr<timeFlag>(new timeFlag);
 	temp->index = index;
@@ -21,7 +21,7 @@ void TimeController::addTimeData(string index) {
 }
 
 //--------------------------------------------------------------
-void TimeController::addTimeSettingFlag(string index, int argnum, ...) {
+void ofxTimeController::addTimeSettingFlag(string index, int argnum, ...) {
 
 	shared_ptr<timeFlag> temp = shared_ptr<timeFlag>(new timeFlag);
 	
@@ -43,7 +43,7 @@ void TimeController::addTimeSettingFlag(string index, int argnum, ...) {
 }
 
 //--------------------------------------------------------------
-void TimeController::start(string index) {
+void ofxTimeController::start(string index) {
     
 	for (int i = 0; i < times.size(); i++) {
 		
@@ -54,7 +54,7 @@ void TimeController::start(string index) {
 }
 
 //--------------------------------------------------------------
-void TimeController::pause(string index) {
+void ofxTimeController::pause(string index) {
 	
     for (int i = 0; i < times.size(); i++) {
 		
@@ -65,7 +65,7 @@ void TimeController::pause(string index) {
 }
 
 //--------------------------------------------------------------
-void TimeController::reset(string index) {
+void ofxTimeController::reset(string index) {
 	
     for (int i = 0; i < times.size(); i++) {
 	
@@ -76,7 +76,7 @@ void TimeController::reset(string index) {
 }
 
 //--------------------------------------------------------------
-void TimeController::flagReload(string index) {
+void ofxTimeController::flagReload(string index) {
     
     for (int i = 0; i < times.size(); i++) {
         
@@ -87,7 +87,7 @@ void TimeController::flagReload(string index) {
 }
 
 //--------------------------------------------------------------
-void TimeController::startAll() {
+void ofxTimeController::startAll() {
 	
     for (int i = 0; i < times.size(); i++) {
 	
@@ -97,7 +97,7 @@ void TimeController::startAll() {
 }
 
 //--------------------------------------------------------------
-void TimeController::pauseAll() {
+void ofxTimeController::pauseAll() {
 	
     for (int i = 0; i < times.size(); i++) {
 	
@@ -107,7 +107,7 @@ void TimeController::pauseAll() {
 }
 
 //--------------------------------------------------------------
-void TimeController::resetAll() {
+void ofxTimeController::resetAll() {
 	
     for (int i = 0; i < times.size(); i++) {
 	
@@ -117,7 +117,7 @@ void TimeController::resetAll() {
 }
 
 //--------------------------------------------------------------
-void TimeController::flagReloadAll() {
+void ofxTimeController::flagReloadAll() {
     
     for (int i = 0; i < times.size(); i++) {
         
@@ -127,7 +127,7 @@ void TimeController::flagReloadAll() {
 }
 
 //--------------------------------------------------------------
-bool TimeController::getNextFlag(string index) {
+bool ofxTimeController::getNextFlag(string index) {
 	
     for (int i = 0; i < times.size(); i++) {
 	
@@ -144,7 +144,7 @@ bool TimeController::getNextFlag(string index) {
 }
 
 //--------------------------------------------------------------
-float TimeController::getCurrentTime(string index){
+float ofxTimeController::getCurrentTime(string index){
     
     for(int i = 0; i < times.size(); i++){
         
@@ -159,7 +159,7 @@ float TimeController::getCurrentTime(string index){
 }
 
 //--------------------------------------------------------------
-int TimeController::getFlagSize(string index) {
+int ofxTimeController::getFlagSize(string index) {
 	
     for (int i = 0; i < times.size(); i++) {
 	
@@ -175,14 +175,14 @@ int TimeController::getFlagSize(string index) {
 }
 
 //--------------------------------------------------------------
-int TimeController::getTotalTimeSize() {
+int ofxTimeController::getTotalTimeSize() {
     
     return times.size();
     
 }
 
 //--------------------------------------------------------------
-float TimeController::getTotalTime() {
+float ofxTimeController::getTotalTime() {
 	
 	float temp = 0.0;
     
