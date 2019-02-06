@@ -15,7 +15,6 @@ public:
     void threadedFunction();
     
     float getCurrentTime();
-    void setDecimalPoint(int decimalPoint);
 	
 
 protected:
@@ -24,7 +23,7 @@ protected:
     float beforeTime;
     float tempTime;
     
-    bool isStart;
+    bool isTimerRunning;
     
 };
 

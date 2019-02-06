@@ -12,7 +12,7 @@ ofxTimeMeasurement::ofxTimeMeasurement():
 currentTime(0.0),
 beforeTime(0.0),
 tempTime(0.0),
-isStart(false)
+isTimerRunning(false)
 {
     
 }
@@ -20,7 +20,7 @@ isStart(false)
 //--------------------------------------------------------------
 ofxTimeMeasurement::~ofxTimeMeasurement(){
     
-    while (thread.isRunning())
+    while (isThreadRunning())
     {
         stopThread();
     }
@@ -31,9 +31,9 @@ ofxTimeMeasurement::~ofxTimeMeasurement(){
 //--------------------------------------------------------------
 void ofxTimeMeasurement::start() {
     
-    if(isStart) return;
+    if(isTimerRunning) return;
     
-    while (!thread.isRunning())
+    while (!isThreadRunning())
     {
         
         startThread();
@@ -41,16 +41,16 @@ void ofxTimeMeasurement::start() {
         
     }
     
-    isStart = true;
+	isTimerRunning = true;
     
 }
 
 //--------------------------------------------------------------
 void ofxTimeMeasurement::pause() {
     
-    if(!isStart) return;
+    if(!isTimerRunning) return;
     
-    while (thread.isRunning())
+    while (isThreadRunning())
     {
         
         stopThread();
@@ -62,14 +62,14 @@ void ofxTimeMeasurement::pause() {
     currentTime = beforeTime + time;
     beforeTime = currentTime;
     
-    isStart = false;
+	isTimerRunning = false;
 }
 
 
 //--------------------------------------------------------------
 void ofxTimeMeasurement::reset() {
     
-    while (thread.isRunning())
+    while (isThreadRunning())
     {
         
         stopThread();
@@ -79,7 +79,7 @@ void ofxTimeMeasurement::reset() {
     currentTime = 0.0;
     beforeTime = 0.0;
 
-    isStart = false;
+	isTimerRunning = false;
 }
 
 //--------------------------------------------------------------
@@ -104,13 +104,6 @@ void ofxTimeMeasurement::threadedFunction() {
 float ofxTimeMeasurement::getCurrentTime() {
     
     return currentTime;
-    
-}
-
-//--------------------------------------------------------------
-void ofxTimeMeasurement::setDecimalPoint(int decimalPoint) {
-    
-    this->decimalPoint = decimalPoint;
     
 }
 
