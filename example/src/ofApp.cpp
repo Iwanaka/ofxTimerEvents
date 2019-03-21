@@ -3,114 +3,68 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-    timerFlag.addFlagTimes(3,1.0,2.0,3.0);
-    timerControll.addTimeData("test1");
-    timerControll.addTimeData("test2");
-    timerControll.addTimeData("test3");
-    timerControll.addTimeSettingFlag("test4", 3,1.0,2.0,3.0);
-    timerControll.addTimeSettingFlag("test5", 3,3.0,4.0,5.0);
+	ofBackground(0);
+
+	//set arg size and event fire time
+	events.addEvents(3, 1.0, 2.0, 3.0);
+
+	table.addEventTimer(3, 1.0, 2.0, 3.0);
+	table.addEventTimer(3, 1.5, 2.5, 3.5);
+	table.addEventTimer(3, 2.0, 3.0, 4.0);
+
+	table.addEventTimer(ofxTE::newEvent(3, 1.0, 2.0, 3.0));
+
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
 
-    if(timerFlag.getNextFlag()){
-        ofLog() << "flag";
-    }
-    
-    if(timerControll.getNextFlag("test4")){
-        ofLog() << "test4";
-    }
-    
-    if(timerControll.getNextFlag("test5")){
-        ofLog() << "test5";
-    }
-    
+	if (events.getNextEvent()) cout << "ofxTimerEvents Fire" << endl;
+
+	if (table.getNextEvent(0)) cout << "ofxTimerEventTable id:0 Fire" << endl;
+	if (table.getNextEvent(1)) cout << "ofxTimerEventTable id:1 Fire" << endl;
+	if (table.getNextEvent(2)) cout << "ofxTimerEventTable id:2 Fire" << endl;
+	if (table.getNextEvent(3)) cout << "ofxTimerEventTable id:3 Fire" << endl;
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 
-    ofDrawBitmapString(ofToString(timer.getCurrentTime()), 10, 10);
-    ofDrawBitmapString(ofToString(timerFlag.getCurrentTime()), 10, 30);
-    ofDrawBitmapString(ofToString(timerControll.getCurrentTime("test1")), 10, 50);
-    ofDrawBitmapString(ofToString(timerControll.getCurrentTime("test2")), 10, 70);
-    ofDrawBitmapString(ofToString(timerControll.getCurrentTime("test3")), 10, 90);
-    ofDrawBitmapString(ofToString(timerControll.getCurrentTime("test4")), 10, 110);
-    ofDrawBitmapString(ofToString(timerControll.getCurrentTime("test5")), 10, 130);
-    
+	int x = 30, y = 30;
+	ofDrawBitmapString("core    : " + ofToString(core.getCurrentTime()), x, y);
+	ofDrawBitmapString("events  : " + ofToString(events.getCurrentTime()), x, y + 20);
+	ofDrawBitmapString("table 0 : " + ofToString(table.getCurrentTime(0)), x, y + 40);
+	ofDrawBitmapString("table 1 : " + ofToString(table.getCurrentTime(1)), x, y + 60);
+	ofDrawBitmapString("table 2 : " + ofToString(table.getCurrentTime(2)), x, y + 80);
+	ofDrawBitmapString("table 3 : " + ofToString(table.getCurrentTime(3)), x, y + 100);
+
 }
 
-//--------------------------------------------------------------
-void ofApp::keyPressed(int key){
-
-    if(key == 's'){
-        timer.start();
-        timerFlag.start();
-        timerControll.startAll();
-    }
-    
-    if(key == 'p'){
-        timer.pause();
-        timerFlag.pause();
-        timerControll.pauseAll();
-    }
-    
-    if(key == 'r'){
-        timer.reset();
-        timerFlag.reset();
-        timerFlag.flagReload();
-        timerControll.resetAll();
-    }
-    
-}
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
 
-}
+	//timer start
+	if (key == 's') {
+		core.start();
+		events.start();
+		table.startAll();
+	}
 
-//--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y ){
+	//timer pause
+	if (key == 'p') {
+		core.pause();
+		events.pause();
+		table.pauseAll();
+	}
 
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseEntered(int x, int y){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::mouseExited(int x, int y){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::windowResized(int w, int h){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg){
-
-}
-
-//--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
-
+	//timer reset
+	if (key == 'r') {
+		core.reset();
+		events.reset();//only timer reset
+		events.reload();// event reload
+		table.resetAll();
+		table.reloadAll();
+	}
 }

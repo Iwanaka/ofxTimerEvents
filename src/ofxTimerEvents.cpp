@@ -1,28 +1,28 @@
 //
-//  TimeFlagSetting.cpp
-//  ofxTimeController
+//  ofxTimerEvents.cpp
+//  ofxTimerEvents
 //
 //  Created by Hiromitsu Iwanaka on 2018/05/18.
 //
 
-#include "ofxTimeSettingFlag.h"
+#include "ofxTimerEvents.h"
+
+using namespace ofxTE;
+//--------------------------------------------------------------
+ofxTimerEvents::ofxTimerEvents() :
+	flagTimes(0),
+	_flagTimes(0)
+{}
 
 //--------------------------------------------------------------
-ofxTimeSettingFlag::ofxTimeSettingFlag() :
-flagTimes(0),
-_flagTimes(0)
-{
-}
-
-//--------------------------------------------------------------
-ofxTimeSettingFlag::~ofxTimeSettingFlag(){
+ofxTimerEvents::~ofxTimerEvents(){
     
 }
 
 //--------------------------------------------------------------
-void ofxTimeSettingFlag::setFlagTimes(int argnum, ...){
+void ofxTimerEvents::setEvents(int argnum, ...){
     
-    flagClear();
+    clear();
     
     va_list args;
     va_start(args, argnum);
@@ -31,7 +31,7 @@ void ofxTimeSettingFlag::setFlagTimes(int argnum, ...){
     
         double _time = va_arg(args, double);
         
-        if (_time > 0.0001) flagTimes.push_back(_time);
+        if (_time >= 0.0) flagTimes.push_back(_time);
         
     }
     
@@ -42,7 +42,7 @@ void ofxTimeSettingFlag::setFlagTimes(int argnum, ...){
 }
 
 //--------------------------------------------------------------
-void ofxTimeSettingFlag::addFlagTimes(int argnum, ...) {
+void ofxTimerEvents::addEvents(int argnum, ...) {
     
     va_list args;
     va_start(args, argnum);
@@ -51,7 +51,7 @@ void ofxTimeSettingFlag::addFlagTimes(int argnum, ...) {
         
         double _time = va_arg(args, double);
         
-        if(_time > 0.0001) flagTimes.push_back(_time);
+        if(_time >= 0.0) flagTimes.push_back(_time);
     
     }
     
@@ -62,38 +62,34 @@ void ofxTimeSettingFlag::addFlagTimes(int argnum, ...) {
 }
 
 //--------------------------------------------------------------
-int ofxTimeSettingFlag::getFlagSize() {
-    
-    return flagTimes.size();
-    
-}
-
-//--------------------------------------------------------------
-void ofxTimeSettingFlag::flagReload(){
+void ofxTimerEvents::reload(){
     
     _flagTimes = flagTimes;
     
 }
 
 //--------------------------------------------------------------
-void ofxTimeSettingFlag::flagClear() {
+void ofxTimerEvents::clear() {
     
     flagTimes.clear();
-    flagReload();
+    reload();
     
 }
 
 //--------------------------------------------------------------
-bool ofxTimeSettingFlag::getNextFlag() {
+int ofxTimerEvents::getEventSize() {
+
+	return flagTimes.size();
+
+}
+
+//--------------------------------------------------------------
+bool ofxTimerEvents::getNextEvent() {
     
-    for (int i = 0; i < _flagTimes.size(); i++) {
-        
+    for (int i = 0; i < _flagTimes.size(); i++) {  
         if (getCurrentTime() >= _flagTimes[i]) {
-            
             _flagTimes.erase(_flagTimes.begin() + i);
-            
             return true;
-        
         }
     }
     
